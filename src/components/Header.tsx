@@ -35,7 +35,7 @@ export const Header = ({categoria}: Props) => {
         </div>
       <div className="titulo-header">
         <h1>LA MEJOR LIGA DE BOGOTA <br /> THE BEST BOGOTA'S LIGUE </h1>
-        <img className="imagen" src="/images/logo10.png" alt="logo" height={220} width={390} />
+        {/*<img className="imagen" src="/images/logo10.png" alt="logo" height={220} width={390} /> */}
       </div>
     </header>
     </>

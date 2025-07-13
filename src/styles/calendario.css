@@ -11,3 +11,20 @@
     margin: 40px;
     padding: 20px;
 }
+
+.contenedor-inputs {
+    background-color: rgb(245, 243, 240);
+    border: 5px solid yellow;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    padding: 50px;
+}
+
+.boton-subir-partidos {
+    height: 40px;
+    width: 80px;
+}
+
+.partidos {
+    background-color: aliceblue;
+}

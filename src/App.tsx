@@ -20,13 +20,11 @@ function App() {
   return (
     <div className='background'>
       <Header categoria={categoria} />
-      <div className='titulo-generalgeneral'>
-        <Routes>
-          <Route path='/' element={<Noticias categoria={categoria} />} />
-          <Route path='/Calendario' element={<Calendario />} />
-          <Route path='/Login' element={<Login />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path='/' element={<Noticias categoria={categoria} />} />
+        <Route path='/Calendario' element={<Calendario />} />
+        <Route path='/Login' element={<Login />} />
+      </Routes>
       <Footer />
     </div>
   );

@@ -32,8 +32,8 @@ export const Noticias = ({categoria} : Props) => {
         setEditar(true);
     }
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
         if (file) {
         setImagen(file);
         }
@@ -86,15 +86,11 @@ export const Noticias = ({categoria} : Props) => {
     };
 
     const handleSubmit = async (titulo : string, link : string, texto : string) => {
-        console.log(titulo);
-        console.log(link);
-        console.log(texto);
         
         try {
         const response = await axios.post('http://localhost:3000/api/Noticias', {
             titulo, link, texto
         });
-        console.log('✅ Imagen insertada:', response.data);
 
         // Agregar la nueva noticia al estado
         setNoticias((prev) => [...prev, response.data]);
@@ -128,7 +124,6 @@ export const Noticias = ({categoria} : Props) => {
         axios.get('http://localhost:3000/api/Noticias')
         .then(response => {
             setNoticias(response.data);
-            console.log(noticias);
             setCargandoNoticias(false);
         })
         .catch(error => {

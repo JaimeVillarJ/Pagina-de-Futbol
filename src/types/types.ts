@@ -10,8 +10,19 @@ export interface imagenes {
 }
 
 export interface noticia {
-    id: number,
-    titulo: string,
-    texto: string,
-    link: string
+    id : number,
+    titulo : string,
+    texto : string,
+    link : string
+}
+
+export interface partidos {
+    id : number,
+    equipo1 : string,
+    equipo2 : string,
+    marcador1 : number,
+    marcador2 : number,
+    dia : string,
+    lugar : string,
+    hora : string
 }
