@@ -26,5 +26,46 @@
 }
 
 .partidos {
-    background-color: aliceblue;
+    background-image: url("/public/images/fondo-partidos.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 10px solid white;
+    width: 80%;
+    justify-content: center;
+    justify-items: center;
+}
+
+.lista-partidos {
+    gap: 5px;
+    width: 50%;
+    background-image: url("/public/images/cenizas.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    padding: 20px;
+    justify-items: center;
+    margin: 30px;
+}
+
+.datos-patido {
+    display: flex;
+    gap: 20px;
+    font-size: 25px;
+    color: white;
+}
+
+.equipos-partido {
+    display: flex;
+    gap: 50px;
+    font-size: 35px;
+    color: white;
+    align-items: center;
+}
+
+.vs {
+    color: yellow;
+}
+
+.escudo {
+    height: 150px;
 }

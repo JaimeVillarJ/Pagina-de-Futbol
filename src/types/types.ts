@@ -26,3 +26,9 @@ export interface partidos {
     lugar : string,
     hora : string
 }
+
+export interface escudos {
+    id : number,
+    nombre : string,
+    escudoURL : string
+}
