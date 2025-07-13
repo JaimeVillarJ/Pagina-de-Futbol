@@ -1,0 +1,29 @@
+.titulo-general {
+    color: rgb(202, 247, 5);
+    font-size: 100px;
+    background-image: url("/assets/cancha.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+    border-radius: 12px;
+    padding: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 
+        -2px -2px 0 #000,  
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000; 
+}
+
+.footer {
+    background-color: rgba(0, 0, 0, 1);
+    color: white;
+    padding: 30px;
+}
+
+.informacion {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 50px;
+    justify-content: center;
+}

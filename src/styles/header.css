@@ -1,0 +1,60 @@
+.header {
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.9); /* negro con 50% de opacidad */
+  padding: 10px;
+  color: white;
+  height: fit-content;
+}
+
+.subHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 10px;
+  font-size: 3rem;
+  font-family: fantasy;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+}
+
+.nav-list li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+  align-items: center;
+}
+
+.nav-list li a:hover {
+  color: #00bcd4;
+}
+
+.titulo-header {
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+    font-family: fantasy;
+}
+
+.imagen {
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.bogota {
+  color: red;
+}
+
+.cerrar-sesion {
+  color: red;
+}

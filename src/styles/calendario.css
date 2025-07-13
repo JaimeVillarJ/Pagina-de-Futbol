@@ -1,0 +1,13 @@
+.contenedor-calendario {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 5px solid yellow;
+    border-radius: 12px;
+    width: auto;
+    gap: 100px;
+    margin: 40px;
+    padding: 20px;
+}

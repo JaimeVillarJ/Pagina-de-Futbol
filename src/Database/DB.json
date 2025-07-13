@@ -1,0 +1,81 @@
+[
+
+    {
+        "id" : 1,
+        "nombre_imagen" : "ronaldo",
+        "nombre" : "Cristiano Ronaldo",
+        "edad" : "39 años",
+        "posicion" : "Delantero"
+    },
+    {
+        "id" : 2,
+        "nombre_imagen" : "messi",
+        "nombre" : "Leonel Messi",
+        "edad" : "36 años",
+        "posicion" : "Delantero"
+    },
+    {
+        "id" : 3,
+        "nombre_imagen" : "falcao",
+        "nombre" : "Radamel Falcao",
+        "edad" : "34 años",
+        "posicion" : "Delantero"
+    },
+    {
+        "id" : 4,
+        "nombre_imagen" : "xavi",
+        "nombre" : "Xavi Hernandez",
+        "edad" : "34 años",
+        "posicion" : "Medio Campista"
+    },
+    {
+        "id" : 5,
+        "nombre_imagen" : "xavi alonso",
+        "nombre" : "Xavi Alonso",
+        "edad" : "35 años",
+        "posicion" : "Medio Campista"
+    },
+    {
+        "id" : 6,
+        "nombre_imagen" : "pirlo",
+        "nombre" : "Andres Pirlo",
+        "edad" : "37 años",
+        "posicion" : "Medio Campista"
+    },
+    {
+        "id" : 7,
+        "nombre_imagen" : "ramos",
+        "nombre" : "Sergio Ramos",
+        "edad" : "35 años",
+        "posicion" : "Defensa Central"
+    },
+    {
+        "id" : 8,
+        "nombre_imagen" : "puyol",
+        "nombre" : "Carles Puyol",
+        "edad" : "37 años",
+        "posicion" : "Defensa Central"
+    },
+    {
+        "id" : 9,
+        "nombre_imagen" : "dani alvez",
+        "nombre" : "Dani Alvez",
+        "edad" : "34 años",
+        "posicion" : "Defensa Lateral"
+    },
+    {
+        "id" : 10,
+        "nombre_imagen" : "marcelo",
+        "nombre" : "Marcelo Vieira",
+        "edad" : "37 años",
+        "posicion" : "Defensa Lateral"
+    },
+    {
+        "id" : 11,
+        "nombre_imagen" : "casillas",
+        "nombre" : "Iker Casillas",
+        "edad" : "36 años",
+        "posicion" : "Portero"
+    }
+
+]
