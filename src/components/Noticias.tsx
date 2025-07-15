@@ -26,6 +26,23 @@ export const Noticias = ({categoria} : Props) => {
 
     const [noticias, setNoticias] = useState<noticia[]>([]);
     const [cargandoNoticias, setCargandoNoticias] = useState(true);
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/Noticias')
+        .then(response => {
+            setNoticias(response.data);
+            setCargandoNoticias(false);
+        })
+        .catch(error => {
+            console.error('Error al obtener el inventario:', error);
+            setCargandoNoticias(false);
+        });
+    }, []);
+
+    // Mostrar mensaje de carga hasta que ambos estén listos
+    if (cargandoNoticias) {
+        return <p>Cargando datos...</p>;
+    }
   
     const handleEditar = (id : number) => {
         setId(id);
@@ -100,7 +117,7 @@ export const Noticias = ({categoria} : Props) => {
         setTexto("");
         setImagen(null);
         } catch (error) {
-        console.error('❌ Error al insertar la imagen:', error);
+            console.error('❌ Error al insertar la imagen:', error);
         }
     };
 
@@ -118,24 +135,6 @@ export const Noticias = ({categoria} : Props) => {
             console.error('❌ Error al actualizar:', error);
         }
     };
-
-    // Cargar inventario
-    useEffect(() => {
-        axios.get('http://localhost:3000/api/Noticias')
-        .then(response => {
-            setNoticias(response.data);
-            setCargandoNoticias(false);
-        })
-        .catch(error => {
-            console.error('Error al obtener el inventario:', error);
-            setCargandoNoticias(false);
-        });
-    }, []);
-
-    // Mostrar mensaje de carga hasta que ambos estén listos
-    if (cargandoNoticias) {
-        return <p>Cargando datos...</p>;
-    }
 
     const eliminarNoticia = async (id: number) => {
         const confirmar = window.confirm("¿Estás seguro de que deseas eliminar esta noticia?");

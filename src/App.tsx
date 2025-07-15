@@ -22,7 +22,7 @@ function App() {
       <Header categoria={categoria} />
       <Routes>
         <Route path='/' element={<Noticias categoria={categoria} />} />
-        <Route path='/Calendario' element={<Calendario />} />
+        <Route path='/Calendario' element={<Calendario categoria={categoria}/>} />
         <Route path='/Login' element={<Login />} />
       </Routes>
       <Footer />
