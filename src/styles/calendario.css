@@ -64,8 +64,43 @@
 
 .vs {
     color: yellow;
+    font-size: 3vw; /* Se ajusta según el ancho de la pantalla */
+    text-align: center;
 }
 
 .escudo {
-    height: 150px;
+    height: auto;
+    max-height: 120px;
+    width: auto;
+    max-width: 25vw; /* Escala con el ancho de la pantalla */
+}
+
+@media (max-width: 768px) {
+    .equipos-partido {
+        flex-direction: column;
+        gap: 20px;
+        font-size: 25px;
+    }
+
+    .datos-patido {
+        flex-direction: column;
+        gap: 5px;
+        font-size: 20px;
+        align-items: center;
+    }
+
+    .lista-partidos {
+        width: 90%;
+        padding: 20px;
+        margin: 15px;
+    }
+
+    .escudo {
+        max-height: 80px;
+        max-width: 40vw;
+    }
+
+    .vs {
+        font-size: 6vw;
+    }
 }
