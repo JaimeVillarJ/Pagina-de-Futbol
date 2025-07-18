@@ -17,7 +17,6 @@ export const Calendario = ({categoria} : Props) => {
   const [lugar, setLugar] = useState("");
   const [hora, setHora] = useState("");
 
-  const [editar, setEditar] = useState(false);
   const [id, setId] = useState(0);
 
   const [partidos, setPartidos] = useState<partidos[]>([]);
@@ -78,16 +77,41 @@ export const Calendario = ({categoria} : Props) => {
     }
   }
 
-  const editarPartido = async (id: number, nuevoTitulo : string, nuevoLink : string, nuevoTexto : string) => {
+  const handleEditar = (item : partidos) => {
+    setId(item.id);
+    setEquipo1(item.equipo1);
+    setEquipo2(item.equipo2);
+    setMarcador1(item.marcador1);
+    setMarcador2(item.marcador2);
+    setDia(item.dia);
+    setLugar(item.lugar);
+    setHora(item.hora);
+  }
+
+  const handleCancelar = () => {
+    setId(0);
+  }
+
+  const editarPartido = async (id: number, nuevoEquipo1 : string, nuevoEquipo2: string, nuevoMarcador1: number, nuevoMarcador2: number, nuevoDia: string, nuevoLugar: string, nuevaHora: string) => {
         try {
-            const response = await axios.put(`http://localhost:3000/api/Noticias/${id}`, {
-                titulo : nuevoTitulo,
-                link: nuevoLink,
-                texto : nuevoTexto
+            const response = await axios.put(`http://localhost:3000/api/partidos/${id}`, {
+                equipo1 : nuevoEquipo1,
+                equipo2 : nuevoEquipo2,
+                marcador1 : nuevoMarcador1,
+                marcador2 : nuevoMarcador2,
+                dia : nuevoDia,
+                lugar : nuevoLugar,
+                hora : nuevaHora
             });
-            setEditar(false);
             setId(0);
-            console.log('✅ Imagen actualizada:', response.data);
+            setEquipo1("");
+            setEquipo2("");
+            setMarcador1(undefined);
+            setMarcador2(undefined);
+            setDia("");
+            setLugar("");
+            setHora("");
+            console.log('✅ Partido actualizado:', response.data);
         } catch (error) {
             console.error('❌ Error al actualizar:', error);
         }
@@ -100,11 +124,11 @@ export const Calendario = ({categoria} : Props) => {
         try {
             const response = await axios.delete(`http://localhost:3000/api/Noticias/${id}`);
             console.log(response.data.mensaje);
-
-            // Quitar la noticia eliminada del estado
             setPartidos(partidos.filter((n) => n.id !== id));
+            alert("✅ Partido eliminado corectamente");
         } catch (error) {
-            console.error('❌ Error al eliminar la noticia:', error);
+            console.error('❌ Error al eliminar el partido:', error);
+            alert('❌ Error al eliminar el partido');
         }
     };
 
@@ -143,9 +167,11 @@ export const Calendario = ({categoria} : Props) => {
           : null
         }
         
-
+        {cargarPartidos ? (
+          <p className="cargando">Cargando partidos...</p>
+        ) : (
         <div className="partidos">
-          {partidos.map((item) => {
+          {partidos.sort((a, b) => a.id - b.id).map((item) => {
             const escudoEquipo1 = escudos.find((e) => e.nombre === item.equipo1);
             const escudoEquipo2 = escudos.find((e) => e.nombre === item.equipo2);
 
@@ -175,13 +201,53 @@ export const Calendario = ({categoria} : Props) => {
                     <img className="escudo" src={escudoEquipo2.escudoURL} alt={`Escudo de ${item.equipo2}`} />
                   )}
                 </div>
-                <button onClick={() => editarPartido}>Editar</button>
-                <button>Borrar</button>
+                {
+                  item.id === id ?
+
+                      <div className="contenedor-inputs">
+
+                        <h1>Datos del partido</h1>
+
+                        <h3>Ingresa los equipos</h3>
+                        <input type="text" value={equipo1} onChange={(e) => setEquipo1(e.target.value)} />
+                        <input type="text" value={equipo2} onChange={(e) => setEquipo2(e.target.value)} />
+
+                        <h3>Ingrese marcador (si ya se dio el partido)</h3>
+                        <input type="number" value={marcador1 ?? ''} onChange={(e) => setMarcador1(Number(e.target.value))} />
+                        <input type="number" value={marcador2 ?? ''} onChange={(e) => setMarcador2(Number(e.target.value))} />
+
+                        <h3>Ingresa el día</h3>
+                        <input type="text" value={dia} onChange={(e) => setDia(e.target.value)} />
+
+                        <h3>Ingresa el lugar</h3>
+                        <input type="text" value={lugar} onChange={(e) => setLugar(e.target.value)} />
+
+                        <h3>Ingresa la hora</h3>
+                        <input type="text" value={hora} onChange={(e) => setHora(e.target.value)} />
+
+                        <br />
+                        <button type="submit" className="boton-subir-partidos" onClick={ () => editarPartido(item.id, equipo1, equipo2, marcador1!, marcador2!, dia, lugar, hora) }>
+                          Subir
+                        </button>
+                        <button className="boton-subir-partidos" onClick={() => handleCancelar()}>
+                          Cancelar
+                        </button>
+                      </div>
+                    : null
+                }
+                {categoria === "admin" ?
+                  <>
+                    <button onClick={() => handleEditar(item)}>Editar</button>
+                    <button onClick={() => eliminarPartido(item.id)}>Borrar</button>
+                  </>
+                : null
+                }
               </div>
             );
           } 
           )}
         </div>
+        )}
       </div>
     </>
   );
