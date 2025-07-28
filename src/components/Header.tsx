@@ -27,8 +27,9 @@ export const Header = ({categoria}: Props) => {
                 <ul className="nav-list">
                 <li><Link to="/">Noticias</Link></li>
                 <li><Link to="/Calendario">Calendario</Link></li>
+                <li><Link to="/Posiciones">Tabla de Posiciones</Link></li>
                 <li><a href="#">Contacto</a></li>
-                <li><Link to="/Login">Autorización</Link></li>
+                {categoria !== "admin" ? <li><Link to="/Login">Autenticar</Link></li> : null}
                 {categoria === "admin" ? <li className="cerrar-sesion" onClick={handleLogout} style={{ cursor: "pointer" }}>Cerrar sesion</li> : null}
                 </ul>
             </nav>

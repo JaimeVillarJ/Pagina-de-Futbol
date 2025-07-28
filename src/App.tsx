@@ -5,9 +5,11 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Calendario } from './components/Calendario';
 import { Login } from './components/Login';
+import { Posiciones } from './components/Posiciones';
 
 import "./styles/general.css";
 import "./styles/background.css";
+
 
 function App() {
   const [categoria, setCategoria] = useState<string | null>(null);
@@ -23,6 +25,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Noticias categoria={categoria} />} />
         <Route path='/Calendario' element={<Calendario categoria={categoria}/>} />
+        <Route path='/Posiciones' element={<Posiciones/>} />
         <Route path='/Login' element={<Login />} />
       </Routes>
       <Footer />

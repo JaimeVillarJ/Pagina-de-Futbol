@@ -239,6 +239,7 @@ export const Calendario = ({categoria} : Props) => {
                   <>
                     <button onClick={() => handleEditar(item)}>Editar</button>
                     <button onClick={() => eliminarPartido(item.id)}>Borrar</button>
+                    <button>Subir</button>
                   </>
                 : null
                 }

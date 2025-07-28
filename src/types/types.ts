@@ -32,3 +32,19 @@ export interface escudos {
     nombre : string,
     escudoURL : string
 }
+
+export interface posicion {
+    id : number,
+    Equipo : string,
+    "partidos jugados" : number,
+    "Partidos Ganados" : number,
+    "Partidos Perdidos" : number,
+    "Partidos Empatados" : number,
+    "Goles Favor" : number,
+    "Goles Contra" : number,
+    Diferencia : number,
+    Amarillas : number,
+    Rojas : number,
+    FairPlay : number,
+    Puntos : number
+}

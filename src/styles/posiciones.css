@@ -1,0 +1,6 @@
+.posicion {
+    display: flex;
+    color: black;
+    background-color: yellow;
+    gap: 20px
+}
