@@ -1,6 +1,69 @@
 .posicion {
-    display: flex;
-    color: black;
-    background-color: yellow;
-    gap: 20px
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background-color: #ffeb3b; /* amarillo suave */
+  color: #000; /* texto negro */
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s ease;
+}
+
+.posicion:hover {
+  background-color: #fff176; /* amarillo más brillante al pasar el cursor */
+}
+
+.posicion .equipo {
+  flex: 2;
+  text-align: left;
+}
+
+.posicion .stats {
+  flex: 5;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.posicion .stats span {
+  min-width: 30px;
+}
+
+
+.cabecera-posiciones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px 8px 0 0;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 20px;
+}
+
+.equipo-header {
+  flex: 2;
+  text-align: left;
+}
+
+.stats-header {
+  flex: 5;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stats-header span {
+  min-width: 30px;
+}
+
+
+.contenedor-tabla {
+    margin-bottom: 100px;
 }

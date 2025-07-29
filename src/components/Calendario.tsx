@@ -19,6 +19,12 @@ export const Calendario = ({categoria} : Props) => {
 
   const [id, setId] = useState(0);
 
+  const [idFairplay, setIdFairplay] = useState(0);
+  const [amarillas1, setAmarillas1] = useState(0);
+  const [rojas1, setRojas1] = useState(0);
+  const [amarillas2, setAmarillas2] = useState(0);
+  const [rojas2, setRojas2] = useState(0);
+
   const [partidos, setPartidos] = useState<partidos[]>([]);
   const [escudos, setEscudos] = useState<escudos[]>([]);
   const [cargarPartidos, setCargarPartidos] = useState(true);
@@ -122,7 +128,7 @@ export const Calendario = ({categoria} : Props) => {
         if (!confirmar) return;
 
         try {
-            const response = await axios.delete(`http://localhost:3000/api/Noticias/${id}`);
+            const response = await axios.delete(`http://localhost:3000/api/partidos/${id}`);
             console.log(response.data.mensaje);
             setPartidos(partidos.filter((n) => n.id !== id));
             alert("✅ Partido eliminado corectamente");
@@ -131,6 +137,89 @@ export const Calendario = ({categoria} : Props) => {
             alert('❌ Error al eliminar el partido');
         }
     };
+
+    const subir = async (equipo1 : string, equipo2 : string, marcador1 : number, marcador2 : number) => {
+        if ( marcador1 > marcador2) {
+            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+              equipo : equipo1,
+              definicionPartido : "ganado",
+              golesFavor : marcador1,
+              golesContra : marcador2
+            });
+            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+              equipo : equipo2,
+              definicionPartido : "perdido",
+              golesFavor : marcador2,
+              golesContra : marcador1
+            });
+            console.log(1);
+            
+        } 
+
+        if ( marcador1 < marcador2) {
+            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+              equipo : equipo1,
+              definicionPartido : "perdido",
+              golesFavor : marcador1,
+              golesContra : marcador2
+            });
+            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+              equipo : equipo2,
+              definicionPartido : "ganado",
+              golesFavor : marcador2,
+              golesContra : marcador1
+            });
+            console.log(2);
+            
+        } 
+
+        if ( marcador1 === marcador2) {
+            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+              equipo : equipo1,
+              definicionPartido : "empatado",
+              golesFavor : marcador1,
+              golesContra : marcador2
+            });
+            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+              equipo : equipo2,
+              definicionPartido : "empatado",
+              golesFavor : marcador2,
+              golesContra : marcador1
+            });
+            console.log(3);
+            
+        } 
+
+        console.log(equipo1, equipo2, marcador1, marcador2);
+        
+        alert("✅ Partido subido correctamente")
+
+    }
+
+    const actualizarFairPlay = async (equipo1 : string, equipo2 : string, amarillas1 : number, amarillas2 : number, rojas1 : number, rojas2 : number) => {
+
+        try {
+          await Promise.allSettled([
+            axios.put(`http://localhost:3000/api/posiciones/fairplay/${equipo1}`, {
+              equipo: equipo1,
+              amarillas: amarillas1,
+              rojas: rojas1
+            }),
+            axios.put(`http://localhost:3000/api/posiciones/fairplay/${equipo2}`, {
+              equipo: equipo2,
+              amarillas: amarillas2,
+              rojas: rojas2
+            }),
+          ]);
+        } catch (error) {
+          console.error("❌ Error al actualizar FairPlay:", error);
+          alert("❌ Hubo un problema actualizando FairPlay");
+        }
+        
+
+        alert("✅ FairPlay actualizado correctamente");
+        
+    } 
 
   return (
     <>
@@ -235,11 +324,30 @@ export const Calendario = ({categoria} : Props) => {
                       </div>
                     : null
                 }
+                {
+                  item.id === idFairplay ?
+                  
+                  <div className="contenedor-inputs">
+
+                    <h3>Ingrese amarillas (Llenar todos lso campos)</h3>
+                    <input type="number" onChange={(e) => setAmarillas1(Number(e.target.value))} />
+                    <input type="number" onChange={(e) => setAmarillas2(Number(e.target.value))} />
+
+                    <h3>Ingrese rojas (Llenar todos los campos)</h3>
+                    <input type="number" onChange={(e) => setRojas1(Number(e.target.value))} />
+                    <input type="number" onChange={(e) => setRojas2(Number(e.target.value))} />
+                
+                    <button onClick={() => actualizarFairPlay(item.equipo1,item.equipo2,amarillas1,amarillas2,rojas1,rojas2)}>Subir</button>
+
+                  </div>
+                  : null
+                }
                 {categoria === "admin" ?
                   <>
                     <button onClick={() => handleEditar(item)}>Editar</button>
                     <button onClick={() => eliminarPartido(item.id)}>Borrar</button>
-                    <button>Subir</button>
+                    <button onClick={() => subir(item.equipo1, item.equipo2, item.marcador1, item.marcador2)}>Subir</button>
+                    <button onClick={() => setIdFairplay(item.id)}>FairPlay</button>
                   </>
                 : null
                 }
