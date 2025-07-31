@@ -48,3 +48,9 @@ export interface posicion {
     FairPlay : number,
     Puntos : number
 }
+
+export interface goleador {
+    Equipo : string,
+    Nombre : string,
+    Goles : number
+}

@@ -9,6 +9,7 @@ import { Posiciones } from './components/Posiciones';
 
 import "./styles/general.css";
 import "./styles/background.css";
+import { Goleadores } from './components/Goleadores';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path='/' element={<Noticias categoria={categoria} />} />
         <Route path='/Calendario' element={<Calendario categoria={categoria}/>} />
         <Route path='/Posiciones' element={<Posiciones/>} />
+        <Route path='/Goleadores' element={<Goleadores categoria={categoria} />} />
         <Route path='/Login' element={<Login />} />
       </Routes>
       <Footer />

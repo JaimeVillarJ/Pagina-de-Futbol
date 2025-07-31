@@ -157,20 +157,20 @@ export const Noticias = ({categoria} : Props) => {
             {editar === false ? 
                 <>
                     {categoria === "admin" ? 
-                    <div className="cuadro-publicar">
-                        <h1>INGRESAR NOTICIA</h1>
-                        <div className="input">
-                            <input name="titulo" type="text" value={titulo} placeholder="Ingrese Titulo" onChange={(e) => {setTitulo(e.target.value)}}/>
-                            <div className="subir">
-                                <p>Subir Imagen:</p>
-                                <input type="file" accept="imagenes/*" onChange={handleFileChange}/>
+                        <div className="cuadro-publicar">
+                            <h1>INGRESAR NOTICIA</h1>
+                            <div className="input">
+                                <input name="titulo" type="text" value={titulo} placeholder="Ingrese Titulo" onChange={(e) => {setTitulo(e.target.value)}}/>
+                                <div className="subir">
+                                    <p>Subir Imagen:</p>
+                                    <input type="file" accept="imagenes/*" onChange={handleFileChange}/>
+                                </div>
+                                <textarea className="input-texto" name="texto" value={texto} placeholder="Ingrese texto(complete todo el campo)" onChange={(e) => {setTexto(e.target.value)}}/>
                             </div>
-                            <textarea className="input-texto" name="texto" value={texto} placeholder="Ingrese texto(complete todo el campo)" onChange={(e) => {setTexto(e.target.value)}}/>
+                            <div className="boton">
+                                <button onClick={uploadImage}>{uploading ? "Publicando..." : "Publicar"}</button>
+                            </div>
                         </div>
-                        <div className="boton">
-                            <button onClick={uploadImage}>{uploading ? "Publicando..." : "Publicar"}</button>
-                        </div>
-                    </div>
                     : null }
                 </>
             : null }
