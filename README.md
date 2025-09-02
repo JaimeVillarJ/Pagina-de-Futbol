@@ -1,3 +1,5 @@
+ESTE PROYECTO NO TIENE DESARROLLO RESPONSIVE, ESTA PLANEADO PARA VERCE EN PC POR EL MOMENTO
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
