@@ -15,8 +15,10 @@ export const Goleadores = ({categoria} : Props) => {
     const [nombre, setNombre] = useState("");
     const [goles, setGoles] = useState(0);
 
+    const API_LINK = process.env.REACT_APP_API_LINK;
+
     useEffect(() => {
-        axios.get('http://localhost:3000/api/Goleadores')
+        axios.get(`${API_LINK}/api/Goleadores`)
         .then(response => {
             setLista(response.data);
         })
@@ -27,7 +29,7 @@ export const Goleadores = ({categoria} : Props) => {
 
     const subir = async (Equipo : string, Nombre : string, Goles : number) => {
         try {
-            await axios.post("http://localhost:3000/api/Goleadores", {
+            await axios.post(`${API_LINK}/api/Goleadores`, {
             Equipo : Equipo,
             Nombre : Nombre,
             Goles : Goles

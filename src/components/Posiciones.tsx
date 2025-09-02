@@ -7,8 +7,10 @@ export const Posiciones = () => {
   
   const [posicion, setPosicion] = useState<posicion[]>();
 
+  const API_LINK = process.env.REACT_APP_API_LINK;
+
   useEffect(() => {
-        axios.get('http://localhost:3000/api/posiciones')
+        axios.get(`${API_LINK}/api/posiciones`)
         .then(response => {
             setPosicion(response.data);
         })

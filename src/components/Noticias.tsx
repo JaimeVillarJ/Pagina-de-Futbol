@@ -27,8 +27,10 @@ export const Noticias = ({categoria} : Props) => {
     const [noticias, setNoticias] = useState<noticia[]>([]);
     const [cargandoNoticias, setCargandoNoticias] = useState(true);
 
+    const API_LINK = process.env.REACT_APP_API_LINK;
+
     useEffect(() => {
-        axios.get('http://localhost:3000/api/Noticias')
+        axios.get(`${API_LINK}/api/Noticias`)
         .then(response => {
             setNoticias(response.data);
             setCargandoNoticias(false);
@@ -105,7 +107,7 @@ export const Noticias = ({categoria} : Props) => {
     const handleSubmit = async (titulo : string, link : string, texto : string) => {
         
         try {
-        const response = await axios.post('http://localhost:3000/api/Noticias', {
+        const response = await axios.post(`${API_LINK}/api/Noticias`, {
             titulo, link, texto
         });
 
@@ -123,7 +125,7 @@ export const Noticias = ({categoria} : Props) => {
 
     const actualizarImagen = async (id: number, nuevoTitulo : string, nuevoLink : string, nuevoTexto : string) => {
         try {
-            const response = await axios.put(`http://localhost:3000/api/Noticias/${id}`, {
+            const response = await axios.put(`${API_LINK}/api/Noticias/${id}`, {
                 titulo : nuevoTitulo,
                 link: nuevoLink,
                 texto : nuevoTexto
@@ -141,7 +143,7 @@ export const Noticias = ({categoria} : Props) => {
         if (!confirmar) return;
 
         try {
-            const response = await axios.delete(`http://localhost:3000/api/Noticias/${id}`);
+            const response = await axios.delete(`${API_LINK}/api/Noticias/${id}`);
             console.log(response.data.mensaje);
 
             // Quitar la noticia eliminada del estado

@@ -6,6 +6,8 @@ export const Login = () => {
   const [usuario, setUsuario] = useState("");
   const [contrasena, setContraseña] = useState("");
 
+  const API_LINK = process.env.REACT_APP_API_LINK;
+
   function handleChangeUsuario(e: React.ChangeEvent<HTMLInputElement>){
       setUsuario(e.target.value);
   }
@@ -16,7 +18,7 @@ export const Login = () => {
 
   async function handleSubmit() {
     try {
-      const res = await fetch('http://localhost:3000/api/Usuarios', {
+      const res = await fetch(`${API_LINK}/api/Usuarios`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ usuario, contrasena })

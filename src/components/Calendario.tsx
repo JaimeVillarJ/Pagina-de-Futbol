@@ -30,9 +30,10 @@ export const Calendario = ({categoria} : Props) => {
   const [cargarPartidos, setCargarPartidos] = useState(true);
 
   // ✅ Solo se ejecuta una vez al montar
+  const API_LINK = process.env.REACT_APP_API_LINK;
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/partidos")
+      .get(`${API_LINK}/api/partidos`)
       .then((response) => {
         setPartidos(response.data);
         setCargarPartidos(false);
@@ -45,7 +46,7 @@ export const Calendario = ({categoria} : Props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/escudos")
+      .get(`${API_LINK}/api/escudos`)
       .then((response) => {
         setEscudos(response.data);
       })
@@ -56,7 +57,7 @@ export const Calendario = ({categoria} : Props) => {
 
   async function handleSubmit() {
     try {
-      const response = await axios.post("http://localhost:3000/api/partidos", {
+      const response = await axios.post(`${API_LINK}/api/partidos`, {
         equipo1,
         equipo2,
         marcador1,
@@ -100,7 +101,7 @@ export const Calendario = ({categoria} : Props) => {
 
   const editarPartido = async (id: number, nuevoEquipo1 : string, nuevoEquipo2: string, nuevoMarcador1: number, nuevoMarcador2: number, nuevoDia: string, nuevoLugar: string, nuevaHora: string) => {
         try {
-            const response = await axios.put(`http://localhost:3000/api/partidos/${id}`, {
+            const response = await axios.put(`${API_LINK}/api/partidos/${id}`, {
                 equipo1 : nuevoEquipo1,
                 equipo2 : nuevoEquipo2,
                 marcador1 : nuevoMarcador1,
@@ -128,7 +129,7 @@ export const Calendario = ({categoria} : Props) => {
         if (!confirmar) return;
 
         try {
-            const response = await axios.delete(`http://localhost:3000/api/partidos/${id}`);
+            const response = await axios.delete(`${API_LINK}/api/partidos/${id}`);
             console.log(response.data.mensaje);
             setPartidos(partidos.filter((n) => n.id !== id));
             alert("✅ Partido eliminado corectamente");
@@ -140,13 +141,13 @@ export const Calendario = ({categoria} : Props) => {
 
     const subir = async (equipo1 : string, equipo2 : string, marcador1 : number, marcador2 : number) => {
         if ( marcador1 > marcador2) {
-            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+            await axios.put(`${API_LINK}/api/posiciones/${id}`, {
               equipo : equipo1,
               definicionPartido : "ganado",
               golesFavor : marcador1,
               golesContra : marcador2
             });
-            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+            await axios.put(`${API_LINK}/api/posiciones/${id}`, {
               equipo : equipo2,
               definicionPartido : "perdido",
               golesFavor : marcador2,
@@ -157,13 +158,13 @@ export const Calendario = ({categoria} : Props) => {
         } 
 
         if ( marcador1 < marcador2) {
-            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+            await axios.put(`${API_LINK}/api/posiciones/${id}`, {
               equipo : equipo1,
               definicionPartido : "perdido",
               golesFavor : marcador1,
               golesContra : marcador2
             });
-            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+            await axios.put(`${API_LINK}/api/posiciones/${id}`, {
               equipo : equipo2,
               definicionPartido : "ganado",
               golesFavor : marcador2,
@@ -174,13 +175,13 @@ export const Calendario = ({categoria} : Props) => {
         } 
 
         if ( marcador1 === marcador2) {
-            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+            await axios.put(`${API_LINK}/api/posiciones/${id}`, {
               equipo : equipo1,
               definicionPartido : "empatado",
               golesFavor : marcador1,
               golesContra : marcador2
             });
-            await axios.put(`http://localhost:3000/api/posiciones/${id}`, {
+            await axios.put(`${API_LINK}/api/posiciones/${id}`, {
               equipo : equipo2,
               definicionPartido : "empatado",
               golesFavor : marcador2,
@@ -200,12 +201,12 @@ export const Calendario = ({categoria} : Props) => {
 
         try {
           await Promise.allSettled([
-            axios.put(`http://localhost:3000/api/posiciones/fairplay/${equipo1}`, {
+            axios.put(`${API_LINK}/api/posiciones/fairplay/${equipo1}`, {
               equipo: equipo1,
               amarillas: amarillas1,
               rojas: rojas1
             }),
-            axios.put(`http://localhost:3000/api/posiciones/fairplay/${equipo2}`, {
+            axios.put(`${API_LINK}/api/posiciones/fairplay/${equipo2}`, {
               equipo: equipo2,
               amarillas: amarillas2,
               rojas: rojas2
