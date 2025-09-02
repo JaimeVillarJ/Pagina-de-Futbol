@@ -27,7 +27,7 @@ export const Noticias = ({categoria} : Props) => {
     const [noticias, setNoticias] = useState<noticia[]>([]);
     const [cargandoNoticias, setCargandoNoticias] = useState(true);
 
-    const API_LINK = process.env.VITE_API_LINK;
+    const API_LINK = import.meta.env.VITE_API_LINK;
 
     useEffect(() => {
         axios.get(`${API_LINK}/api/Noticias`)

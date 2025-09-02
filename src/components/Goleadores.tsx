@@ -15,7 +15,7 @@ export const Goleadores = ({categoria} : Props) => {
     const [nombre, setNombre] = useState("");
     const [goles, setGoles] = useState(0);
 
-    const API_LINK = process.env.VITE_API_LINK;
+    const API_LINK = import.meta.env.VITE_API_LINK;
 
     useEffect(() => {
         axios.get(`${API_LINK}/api/Goleadores`)
