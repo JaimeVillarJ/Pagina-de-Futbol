@@ -30,7 +30,7 @@ export const Calendario = ({categoria} : Props) => {
   const [cargarPartidos, setCargarPartidos] = useState(true);
 
   // ✅ Solo se ejecuta una vez al montar
-  const API_LINK = process.env.REACT_APP_API_LINK;
+  const API_LINK = process.env.VITE_API_LINK;
   useEffect(() => {
     axios
       .get(`${API_LINK}/api/partidos`)

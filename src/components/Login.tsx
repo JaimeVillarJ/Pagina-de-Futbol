@@ -6,7 +6,7 @@ export const Login = () => {
   const [usuario, setUsuario] = useState("");
   const [contrasena, setContraseña] = useState("");
 
-  const API_LINK = process.env.REACT_APP_API_LINK;
+  const API_LINK = process.env.VITE_API_LINK;
 
   function handleChangeUsuario(e: React.ChangeEvent<HTMLInputElement>){
       setUsuario(e.target.value);
